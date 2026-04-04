@@ -1,0 +1,21 @@
+version: '3.9'
+services:
+  iot-simulator-postgres:
+    image: postgres:15
+    container_name: iot_simulator_postgres
+    environment:
+      POSTGRES_DB: iot_simulator_db
+      POSTGRES_USER: iot_user
+      POSTGRES_PASSWORD: iot_pass
+    ports:
+      - "25432:5432"
+    volumes:
+      - iot_simulator_pg_data:/var/lib/postgresql/data
+    networks:
+      - iot_sim_net
+
+networks:
+  iot_sim_net:
+
+volumes:
+  iot_simulator_pg_data:
